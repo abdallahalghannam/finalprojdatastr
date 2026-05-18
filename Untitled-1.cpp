@@ -7,7 +7,7 @@
 using namespace std;
 
 // ==========================================
-// 1. Anger Management System (Nour's Logic)
+// 1. Anger Management System 
 // ==========================================
 void handleAnger(int &anger, string politeMsg) {
     if (anger == 0) cout << "\n[Notice] Please: " << politeMsg << "\n";
