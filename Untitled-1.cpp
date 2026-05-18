@@ -70,6 +70,40 @@ public:
 
 // ==========================================
 // --- ABDALRAHMAN CODE HERE ---
+
+struct StackNode {
+    Parcel data;
+    StackNode* next;
+};
+
+class WarehouseStack {
+private:
+    StackNode* top;
+public:
+    WarehouseStack() { top = NULL; }
+    
+    void push(Parcel p, bool silent = false) {
+        StackNode* newNode = new StackNode();
+        newNode->data = p;
+        newNode->next = top;
+        top = newNode;
+        if (!silent) {
+            cout << "Parcel " << setfill('0') << setw(4) << p.trackingID << setfill(' ') << " stored in Warehouse Stack.\n";
+        }
+    }
+    
+    bool pop() {
+        if (top == NULL) { 
+            cout << "Warehouse Stack is empty! No parcels to load.\n"; 
+            return false; 
+        }
+        StackNode* temp = top;
+        top = top->next;
+        cout << "Parcel " << setfill('0') << setw(4) << temp->data.trackingID << setfill(' ') << " loaded to truck.\n";
+        delete temp;
+        return true;
+    }
+};
 // ==========================================
 
 
