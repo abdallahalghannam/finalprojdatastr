@@ -4,7 +4,7 @@
 
 using namespace std;
 
-// هيكل الطرد الأساسي
+// الهيكل الأساسي للبيانات
 struct Parcel {
     int trackingID;
     string destination;
@@ -12,14 +12,14 @@ struct Parcel {
 };
 
 // ==========================================
-// 1. نظام الغضب التافه (سطرين فقط لقفل خانة الطلب)
+// كود نور الدين - نظام الغضب
 // ==========================================
 void handleAnger(int &anger, string politeMsg) {
     cout << "\n[Notice] " << politeMsg << "\n";
 }
 
 // ==========================================
-// 2. طابور الشاحنات التافه (مصفوفة مباشرة)
+// كود أحمد - طابور الشاحنات
 // ==========================================
 class TruckQueue {
 private:
@@ -42,7 +42,7 @@ public:
 };
 
 // ==========================================
-// 3. مكدس المستودع (لينكد ليست بأبسط شكل ممكن)
+// كود عبد الرحمن - مكدس المستودع
 // ==========================================
 struct StackNode {
     Parcel data;
@@ -58,23 +58,23 @@ public:
     void push(Parcel p) {
         StackNode* newNode = new StackNode();
         newNode->data = p;
-        newNode->next = top; // ربط العقدة الجديدة بالتوب القديم
-        top = newNode;       // نقل التوب للعقدة الجديدة
+        newNode->next = top; 
+        top = newNode;       
         cout << "Parcel " << p.trackingID << " stored in Stack.\n";
     }
     
     bool pop() {
         if (top == NULL) { cout << "Stack is empty!\n"; return false; }
         StackNode* temp = top;
-        top = top->next; // تحريك التوب لأسفل
+        top = top->next; 
         cout << "Parcel " << temp->data.trackingID << " loaded to truck.\n";
-        delete temp;     // مسح العقدة من الذاكرة
+        delete temp;     
         return true;
     }
 };
 
 // ==========================================
-// 4. شجرة البحث الثنائية (BST بدون الفخاخ والتنسيقات)
+// كود عبد الله - شجرة البحث الثنائية
 // ==========================================
 struct TreeNode {
     Parcel data;
@@ -113,7 +113,7 @@ public:
         if (root == NULL) return root;
         if (id < root->data.trackingID) root->left = deleteNode(root->left, id);
         else if (id > root->data.trackingID) root->right = deleteNode(root->right, id);
-        else { // حذف العقدة البسيطة (بدون الدخول في تعقيد الابنين)
+        else { 
             if (root->left == NULL) { TreeNode* temp = root->right; delete root; return temp; }
             else if (root->right == NULL) { TreeNode* temp = root->left; delete root; return temp; }
         }
@@ -130,7 +130,7 @@ public:
 };
 
 // ==========================================
-// 5. التقرير والترتيب (بابل سورت مباشر بدون فلاتر)
+// كود نور الدين - التقرير والترتيب
 // ==========================================
 void displaySortedReport(int &angerLevel) {
     ifstream inFile("data.txt");
@@ -142,7 +142,7 @@ void displaySortedReport(int &angerLevel) {
     while (inFile >> ids[count] >> dests[count] >> weights[count]) { count++; }
     inFile.close();
 
-    // بابل سورت تقليدي جداً للترتيب حسب الوزن
+    // ترتيب الفقاعات حسب الوزن
     for (int i = 0; i < count - 1; i++) {
         for (int j = 0; j < count - i - 1; j++) {
             if (weights[j] > weights[j + 1]) {
@@ -160,7 +160,7 @@ void displaySortedReport(int &angerLevel) {
 }
 
 // ==========================================
-// 6. الدالة الرئيسية التافهة والمباشرة
+// الدالة الرئيسية والتحكم بالنظام
 // ==========================================
 int main() {
     ParcelBST bst;
@@ -170,7 +170,7 @@ int main() {
     int angerLevel = 0; 
     int choice;
     
-    // محاولة قراءة ملف البيانات ببساطة عند التشغيل
+    // استعادة البيانات من الملف عند الإقلاع
     ifstream initFile("data.txt");
     if (initFile.is_open()) {
         int tempID, tempWeight; string tempDest;
@@ -193,13 +193,13 @@ int main() {
         cout << "6. Delete Parcel\n";
         cout << "0. Exit\n";
         cout << "Enter choice: ";
-        cin >> choice; // إدخال مباشر بدون فلاتر نصوص معقدة
+        cin >> choice; 
         
         if (choice == 1) {
             Parcel p;
             p.trackingID = staticID++;
             cout << "Enter Destination (One word): ";
-            cin >> p.destination; // قراءة كلمة واحدة لتجنب مشاكل المسافات والـ getline
+            cin >> p.destination; 
             cout << "Enter Weight (kg): ";
             cin >> p.weight;
             
